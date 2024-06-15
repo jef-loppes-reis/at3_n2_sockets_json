@@ -1,3 +1,5 @@
+package socketslibrary;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
@@ -11,8 +13,7 @@ public class Servidor {
             // Enquanto o cliente nao se conectar.
             Socket socket =  serverSocket.accept();
             // Print da conecxao do Cliente.
-            System.out.println("CLiente conectou!");
-
+            System.out.println("Cliente conectou!");
             // Leitura da mensagem do Cliente.
             InputStreamReader inputReader = new InputStreamReader(socket.getInputStream());
             PrintStream saida = new PrintStream(socket.getOutputStream());
