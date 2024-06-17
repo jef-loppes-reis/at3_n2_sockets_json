@@ -7,10 +7,6 @@ import java.util.Scanner;
 
 public class Cliente {
     public static void main(String[] args) throws IOException {
-        // Catalogo catalogo = new Catalogo("data/livros.json");
-        // catalogo.salvar("data/livros.json");
-        
-
         Scanner scanner = new Scanner(System.in);
 
         while(true){
@@ -24,16 +20,8 @@ public class Cliente {
             // System.out.println("3 - Devolver seus livros");
             String option = scanner.nextLine();
 
+            saida.writeObject(option);
 
-            switch (option) {
-                case "1":
-                    saida.writeObject(option);
-                    //entrada.readObject?
-                    break;
-            
-                default:
-                    break;
-            }
             System.out.println("-----------------------");   
             socket.close();     
         }
