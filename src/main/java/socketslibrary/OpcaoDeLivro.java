@@ -1,13 +1,18 @@
 package socketslibrary;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class OpcaoDeLivro {
+    private int posicao;
     private String autor;
     private String titulo;
     private String genero;
     private int numeroDeExemplares;
     private int numeroDeExemplaresDisponiveis;
 
-    public OpcaoDeLivro(String autor, String titulo, String genero, int numeroDeExemplares, int numeroDeExemplaresDisponiveis) {
+    public OpcaoDeLivro(int posicao, String autor, String titulo, String genero, int numeroDeExemplares, int numeroDeExemplaresDisponiveis) {
+        this.setPosicao(posicao);
         this.setAutor(autor);
         this.setTitulo(titulo);
         this.setGenero(genero);
@@ -15,7 +20,8 @@ public class OpcaoDeLivro {
         this.setNumeroDeExemplaresDisponiveis(numeroDeExemplaresDisponiveis);
     }
 
-    public OpcaoDeLivro(String autor, String titulo, String genero, int numeroDeExemplares) {
+    public OpcaoDeLivro(int posicao, String autor, String titulo, String genero, int numeroDeExemplares) {
+        this.setPosicao(posicao);
         this.setAutor(autor);
         this.setTitulo(titulo);
         this.setGenero(genero);
@@ -23,11 +29,15 @@ public class OpcaoDeLivro {
         this.setNumeroDeExemplaresDisponiveis(numeroDeExemplares);
     }
 
+    public int getPosicao() {
+        return posicao;
+    }
+
     public String getAutor() {
         return autor;
     }
 
-    public String gettitulo() {
+    public String getTitulo() {
         return titulo;
     }
 
@@ -41,6 +51,10 @@ public class OpcaoDeLivro {
 
     public int getNumeroDeExemplaresDisponiveis() {
         return numeroDeExemplaresDisponiveis;
+    }
+
+    public void setPosicao(int posicao) {
+        this.posicao = posicao;
     }
 
     public void setAutor(String autor) {
@@ -83,6 +97,7 @@ public class OpcaoDeLivro {
      }
 
     public String toString(){
+        String posicaoLinha = "Posicao: " + this.posicao;
         String autorLinha =  "Autor: " + this.autor;
         String tituloLinha =  "titulo: " + this.titulo;
         String generoLinha = "Genero: " + this.genero;
@@ -90,7 +105,8 @@ public class OpcaoDeLivro {
         String numeroDeExemplaresDisponiveisLinha = "N° de exemplares disponiveis: " + this.numeroDeExemplaresDisponiveis;
 
 
-        return autorLinha + "\n" + 
+        return posicaoLinha + "\n" + 
+                autorLinha + "\n" + 
                 tituloLinha + "\n" + 
                 generoLinha + "\n" + 
                 numeroDeExemplaresLinha + "\n" + 
@@ -116,13 +132,18 @@ public class OpcaoDeLivro {
     }
 
     public boolean alugarExemplar(){
+        System.out.println("Aqui!" + this.toString());
+
         if(this.numeroDeExemplaresDisponiveis > 0){
             this.numeroDeExemplaresDisponiveis -= 1;
+            System.out.println("Aqui!" + this.toString());
+
             return true;
         }
         else{
             return false;
         }
+
     }  
     public boolean devolverExemplar(){
         if(this.numeroDeExemplaresDisponiveis + 1 <= this.numeroDeExemplares){
