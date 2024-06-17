@@ -26,14 +26,14 @@ public class Catalogo {
             ObjectMapper mapper = new ObjectMapper();       
             try {
                 JsonNode jsonNode = mapper.readTree(jsonString);
-                JsonNode arrayNode = jsonNode.get("livros");
+                // JsonNode arrayNode = jsonNode.get("livros");
 
-                if (arrayNode.isArray()) {
-                    for (JsonNode node : arrayNode) {
+                if (jsonNode.isArray()) {
+                    for (JsonNode node : jsonNode) {
                         String titulo = node.get("titulo").asText();
                         String autor = node.get("autor").asText();
                         String genero = node.get("genero").asText();
-                        int exemplares = node.get("exemplares").asInt();
+                        int exemplares = node.get("numeroDeExemplares").asInt();
 
                         OpcaoDeLivro opcaoDeLivroAtual = new OpcaoDeLivro(titulo, 
                         autor,
@@ -62,9 +62,7 @@ public class Catalogo {
     public void salvar(String pathLivrosJSON) {
         ObjectMapper mapper = new ObjectMapper();  
         File arquivoCatalogo  = new File(pathLivrosJSON);
-
-        this.opcoesDeLivros.remove(0);
-        
+       
         try {
             mapper.writerWithDefaultPrettyPrinter()
                     .writeValue(arquivoCatalogo, this.opcoesDeLivros);
