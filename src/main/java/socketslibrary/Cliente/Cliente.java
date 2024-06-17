@@ -27,7 +27,7 @@ public class Cliente {
             System.out.println("Digite o que deseja fazer: ");
             System.out.println("1 - Listar os livros");
             System.out.println("2 - Alugar um livro");
-            // System.out.println("3 - Devolver seus livros");
+            System.out.println("3 - Devolver seus livros");
             System.out.println("4 - Sair");
             String opcao = scanner.nextLine();
 
@@ -42,6 +42,11 @@ public class Cliente {
                     String escolhaDeLivro = scanner.nextLine();
                     objectOutputStream.writeObject(opcao);
                     objectOutputStream.writeObject(escolhaDeLivro);
+                case "3":
+                    System.out.println("Digite o livro que quer devolver: ");
+                    String livroEscolhidoParaDevolver = scanner.nextLine();
+                    objectOutputStream.writeObject(opcao);
+                    objectOutputStream.writeObject(livroEscolhidoParaDevolver);
                 case "4":
                     continuar = false;
                 default:

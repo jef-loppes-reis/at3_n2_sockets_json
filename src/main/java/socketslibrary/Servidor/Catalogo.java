@@ -86,6 +86,18 @@ public class Catalogo {
         return false;
     }
 
+    public Boolean devolverLivro(int opcaoEscolhida) throws StreamWriteException, DatabindException, IOException {
+        for(OpcaoDeLivro opcaoDeLivro: this.opcoesDeLivros) {
+            if(opcaoDeLivro.getPosicao() == opcaoEscolhida){
+                Boolean result = opcaoDeLivro.devolverExemplar();
+                this.salvarEmArquivo();
+               
+                return result;
+            }
+        }
+        return false;
+    }
+
 
     private void salvarEmArquivo() throws StreamWriteException, DatabindException, IOException {
         ObjectMapper mapper = new ObjectMapper();  

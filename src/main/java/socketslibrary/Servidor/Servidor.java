@@ -36,9 +36,14 @@ public class Servidor {
                         }
                         break;
                     case "3":
-                        System.out.println("aqui");
-                        objectOutputStream.writeObject("aqui 3");
-                    case "4":
+                        int opcaoDeLivroADevolver =  Integer.parseInt(objectInputStream.readObject().toString());
+                        Boolean conseguiuDevolver = catalogo.devolverLivro(opcaoDeLivroADevolver);
+                        if (conseguiuDevolver){
+                            objectOutputStream.writeObject("Devolvido!");
+                        } else {
+                            objectOutputStream.writeObject("Não foi possível alugar esse livro.");
+                        }
+                    break;                    case "4":
                         continuar = false;
                         break;
                     default:
