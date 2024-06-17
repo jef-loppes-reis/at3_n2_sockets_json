@@ -7,6 +7,7 @@ import java.net.Socket;
 import java.util.Scanner;
 
 public class Cliente {
+    private String[] idsLivrosQuePegouEmprestado;
     /**
      * @param args
      * @throws IOException

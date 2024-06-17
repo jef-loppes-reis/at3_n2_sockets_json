@@ -1,20 +1,23 @@
 {
   "livros" : [ {
     "posicao" : 1,
+    "id" : "647afb20-236d-4802-8f5d-d2cd30447eef",
     "autor" : "Marco Aurélio",
     "titulo" : "Meditações",
     "genero" : "Filosofia",
     "numeroDeExemplares" : 4,
-    "numeroDeExemplaresDisponiveis" : 2
+    "numeroDeExemplaresDisponiveis" : 0
   }, {
     "posicao" : 2,
+    "id" : "28363951-3eef-45f6-a8de-8a5452100b6b",
     "autor" : "Jane Austen",
     "titulo" : "Orgulho e Preconceito",
     "genero" : "Romance",
     "numeroDeExemplares" : 4,
-    "numeroDeExemplaresDisponiveis" : 4
+    "numeroDeExemplaresDisponiveis" : 2
   }, {
     "posicao" : 3,
+    "id" : "d083249d-bb1c-4822-bc04-53867dd9ffa9",
     "autor" : "David Goggins",
     "titulo" : "Nada Pode Me Ferir",
     "genero" : "Autoajuda",
@@ -22,6 +25,7 @@
     "numeroDeExemplaresDisponiveis" : 2
   }, {
     "posicao" : 4,
+    "id" : "598ea74b-ad34-407b-a5f3-0b45f6d70d42",
     "autor" : "H.G. Wells",
     "titulo" : "O Homem Invisível",
     "genero" : "Ficção Científica",
@@ -29,6 +33,7 @@
     "numeroDeExemplaresDisponiveis" : 1
   }, {
     "posicao" : 5,
+    "id" : "11e06725-83db-4f2f-826a-c3933c92f2a0",
     "autor" : "Thomas More",
     "titulo" : "Utopia",
     "genero" : "Filosofia",
@@ -36,6 +41,7 @@
     "numeroDeExemplaresDisponiveis" : 14
   }, {
     "posicao" : 6,
+    "id" : "e847a3f8-a8b1-4459-856c-2afccb0a40fd",
     "autor" : "George Orwell",
     "titulo" : "A Revolução dos Bichos",
     "genero" : "Fábula Política",
@@ -43,6 +49,7 @@
     "numeroDeExemplaresDisponiveis" : 1
   }, {
     "posicao" : 7,
+    "id" : "1453e05d-162d-41a8-ba15-60bf368d27ec",
     "autor" : "C.S. Lewis",
     "titulo" : "As Crônicas de Nárnia",
     "genero" : "Fantasia",
@@ -50,6 +57,7 @@
     "numeroDeExemplaresDisponiveis" : 8
   }, {
     "posicao" : 8,
+    "id" : "0882aab4-5f43-47f2-9dff-781f8fd50a27",
     "autor" : "Tomás Antônio Gonzaga",
     "titulo" : "Cartas Chilenas",
     "genero" : "Sátira",
@@ -57,6 +65,7 @@
     "numeroDeExemplaresDisponiveis" : 3
   }, {
     "posicao" : 9,
+    "id" : "546d60ac-ea9a-491f-8ab9-e21287cc01b1",
     "autor" : "Nicolau Maquiavel",
     "titulo" : "O Príncipe",
     "genero" : "Filosofia Política",
@@ -64,6 +73,7 @@
     "numeroDeExemplaresDisponiveis" : 1
   }, {
     "posicao" : 10,
+    "id" : "86fe0473-28fb-43a7-bcc3-773866bc10a6",
     "autor" : "Douglas Adams",
     "titulo" : "O Guia do Mochileiro das Galáxias",
     "genero" : "Ficção Científica",

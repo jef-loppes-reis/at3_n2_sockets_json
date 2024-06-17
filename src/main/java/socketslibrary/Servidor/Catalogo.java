@@ -29,12 +29,12 @@ public class Catalogo {
         System.out.println(this);
     }
 
-    public String toJSON() {
-        String catalogoJSON = "{\n\t\"livros\":\n[\n";
+    public String paraCliente() {
+        String catalogoJSON = "LIVROS:\n\n";
         for (OpcaoDeLivro opcaoDeLivro: this.opcoesDeLivros) {
-            catalogoJSON += opcaoDeLivro.toJSON() + "\n";
+            catalogoJSON += opcaoDeLivro.toString() + "\n";
         }
-        catalogoJSON += "]\n}";
+        catalogoJSON += "\n";
         return catalogoJSON;
     }
 
@@ -48,6 +48,7 @@ public class Catalogo {
         if (jsonNode.isArray()) {
             int posicaoDaOpcao = 1;
             for (JsonNode node : jsonNode) {
+                String id = node.get("id").asText();
                 String titulo = node.get("titulo").asText();
                 String autor = node.get("autor").asText();
                 String genero = node.get("genero").asText();
@@ -58,6 +59,7 @@ public class Catalogo {
 
                 OpcaoDeLivro opcaoDeLivroAtual = new OpcaoDeLivro(
                 posicaoDaOpcao,
+                id,
                 titulo, 
                 autor,
                 genero,
@@ -74,16 +76,16 @@ public class Catalogo {
         return opcoesDeLivrosTemporaria;
     }
 
-    public Boolean alugarLivro(int opcaoEscolhida) throws StreamWriteException, DatabindException, IOException {
+    public String alugarLivro(int opcaoEscolhida) throws StreamWriteException, DatabindException, IOException {
         for(OpcaoDeLivro opcaoDeLivro: this.opcoesDeLivros) {
             if(opcaoDeLivro.getPosicao() == opcaoEscolhida){
-                Boolean result = opcaoDeLivro.alugarExemplar();
+                String result = opcaoDeLivro.alugarExemplar();
                 this.salvarEmArquivo();
                
                 return result;
             }
         }
-        return false;
+        return "Não foi possível alugar o livro";
     }
 
     public Boolean devolverLivro(int opcaoEscolhida) throws StreamWriteException, DatabindException, IOException {

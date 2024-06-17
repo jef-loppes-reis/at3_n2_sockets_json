@@ -9,10 +9,13 @@ import java.io.PrintStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import socketslibrary.OpcaoDeLivro;
+
 public class Servidor {
     public static void main(String[] args) throws Exception {
         boolean continuar = true;
         try{
+            OpcaoDeLivro opc = new OpcaoDeLivro(0, null, null, null, 0);
             ServerSocket serverSocket = new ServerSocket(4000);
             Socket socket = serverSocket.accept();
             Catalogo catalogo = new Catalogo("data/livros.json");
@@ -24,16 +27,13 @@ public class Servidor {
                 
                 switch (recebido) {
                     case "1":
-                        objectOutputStream.writeObject(String.valueOf(catalogo.toJSON()));
+                        objectOutputStream.writeObject(String.valueOf(catalogo.paraCliente()));
                         break;
                     case "2":
                         int opcaoDeLivroEscolhido =  Integer.parseInt(objectInputStream.readObject().toString());
-                        Boolean conseguiuAlugar = catalogo.alugarLivro(opcaoDeLivroEscolhido);
-                        if (conseguiuAlugar){
-                            objectOutputStream.writeObject("alugado!");
-                        } else {
-                            objectOutputStream.writeObject("Não foi possível alugar esse livro.");
-                        }
+                        String resultado = catalogo.alugarLivro(opcaoDeLivroEscolhido);
+                        System.out.println("Aqui: "+ resultado);
+                        objectOutputStream.writeObject(resultado);
                         break;
                     case "3":
                         int opcaoDeLivroADevolver =  Integer.parseInt(objectInputStream.readObject().toString());
@@ -41,7 +41,7 @@ public class Servidor {
                         if (conseguiuDevolver){
                             objectOutputStream.writeObject("Devolvido!");
                         } else {
-                            objectOutputStream.writeObject("Não foi possível alugar esse livro.");
+                            objectOutputStream.writeObject("Não foi possível devolver esse livro.");
                         }
                     break;                    case "4":
                         continuar = false;
