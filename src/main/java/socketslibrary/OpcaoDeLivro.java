@@ -2,22 +2,22 @@ package socketslibrary;
 
 public class OpcaoDeLivro {
     private String autor;
-    private String nome;
+    private String titulo;
     private String genero;
     private int numeroDeExemplares;
     private int numeroDeExemplaresDisponiveis;
 
-    public OpcaoDeLivro(String autor, String nome, String genero, int numeroDeExemplares, int numeroDeExemplaresDisponiveis) {
+    public OpcaoDeLivro(String autor, String titulo, String genero, int numeroDeExemplares, int numeroDeExemplaresDisponiveis) {
         this.setAutor(autor);
-        this.setNome(nome);
+        this.setTitulo(titulo);
         this.setGenero(genero);
         this.setNumeroDeExemplares(numeroDeExemplares);
         this.setNumeroDeExemplaresDisponiveis(numeroDeExemplaresDisponiveis);
     }
 
-    public OpcaoDeLivro(String autor, String nome, String genero, int numeroDeExemplares) {
+    public OpcaoDeLivro(String autor, String titulo, String genero, int numeroDeExemplares) {
         this.setAutor(autor);
-        this.setNome(nome);
+        this.setTitulo(titulo);
         this.setGenero(genero);
         this.setNumeroDeExemplares(numeroDeExemplares);
         this.setNumeroDeExemplaresDisponiveis(numeroDeExemplares);
@@ -27,8 +27,8 @@ public class OpcaoDeLivro {
         return autor;
     }
 
-    public String getNome() {
-        return nome;
+    public String gettitulo() {
+        return titulo;
     }
 
     public int getNumeroDeExemplares() {
@@ -47,8 +47,8 @@ public class OpcaoDeLivro {
         this.autor = autor;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
     public void setGenero(String genero) {
@@ -84,17 +84,35 @@ public class OpcaoDeLivro {
 
     public String toString(){
         String autorLinha =  "Autor: " + this.autor;
-        String nomeLinha =  "Nome: " + this.nome;
-        String generoLinha = "Genero" + this.genero;
-        String numeroDeExemplaresLinha =  "N° de exemplares: " + this.numeroDeExemplares;
+        String tituloLinha =  "titulo: " + this.titulo;
+        String generoLinha = "Genero: " + this.genero;
+        String numeroDeExemplaresLinha =  "N° exemplares: " + this.numeroDeExemplares;
         String numeroDeExemplaresDisponiveisLinha = "N° de exemplares disponiveis: " + this.numeroDeExemplaresDisponiveis;
 
 
         return autorLinha + "\n" + 
-                nomeLinha + "\n" + 
+                tituloLinha + "\n" + 
                 generoLinha + "\n" + 
                 numeroDeExemplaresLinha + "\n" + 
                 numeroDeExemplaresDisponiveisLinha + "\n";
+    }
+
+    public String toJSON(){
+        String autorFormatoJSON =  "\"autor\": " + "\"" + this.autor + "\"";
+        String tituloFormatoJSON =  "\"titulo\": " + "\"" + this.titulo + "\"";
+        String generoFormatoJSON = "\"genero\": " + "\"" + this.genero + "\"";
+        String numeroDeExemplaresFormatoJSON =  "\"numero_de_exemplares\": " +  "\"" + this.numeroDeExemplares + "\"";
+        String numeroDeExemplaresDisponiveisFormatoJSON = "\"numero_de_exemplares_disponiveis\": " 
+        + "\"" + this.numeroDeExemplaresDisponiveis + "\"";
+
+
+        return "{\n" + 
+                "\t" + autorFormatoJSON + ",\n" + 
+                "\t" + tituloFormatoJSON + ",\n" + 
+                "\t" + generoFormatoJSON + ",\n" + 
+                "\t" + numeroDeExemplaresFormatoJSON + ",\n" + 
+                "\t" + numeroDeExemplaresDisponiveisFormatoJSON + "\n" + 
+                "}";
     }
 
     public boolean alugarExemplar(){
