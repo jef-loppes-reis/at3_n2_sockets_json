@@ -2,17 +2,21 @@ package socketslibrary;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class OpcaoDeLivro {
     private int posicao;
+    private UUID id;
     private String autor;
     private String titulo;
     private String genero;
     private int numeroDeExemplares;
     private int numeroDeExemplaresDisponiveis;
 
-    public OpcaoDeLivro(int posicao, String autor, String titulo, String genero, int numeroDeExemplares, int numeroDeExemplaresDisponiveis) {
+    public OpcaoDeLivro(int posicao, String id, String autor, String titulo, String genero, int numeroDeExemplares, int numeroDeExemplaresDisponiveis) {
         this.setPosicao(posicao);
+        this.setId(UUID.fromString(id));
+
         this.setAutor(autor);
         this.setTitulo(titulo);
         this.setGenero(genero);
@@ -22,6 +26,7 @@ public class OpcaoDeLivro {
 
     public OpcaoDeLivro(int posicao, String autor, String titulo, String genero, int numeroDeExemplares) {
         this.setPosicao(posicao);
+        this.setId(UUID.randomUUID());
         this.setAutor(autor);
         this.setTitulo(titulo);
         this.setGenero(genero);
@@ -53,8 +58,16 @@ public class OpcaoDeLivro {
         return numeroDeExemplaresDisponiveis;
     }
 
+    public UUID getId() {
+        return id;
+    }
+
     public void setPosicao(int posicao) {
         this.posicao = posicao;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
     }
 
     public void setAutor(String autor) {
@@ -97,6 +110,7 @@ public class OpcaoDeLivro {
      }
 
     public String toString(){
+        String idLinha = "ID: " + this.id;
         String posicaoLinha = "Posicao: " + this.posicao;
         String autorLinha =  "Autor: " + this.autor;
         String tituloLinha =  "titulo: " + this.titulo;
@@ -105,12 +119,17 @@ public class OpcaoDeLivro {
         String numeroDeExemplaresDisponiveisLinha = "N° de exemplares disponiveis: " + this.numeroDeExemplaresDisponiveis;
 
 
-        return posicaoLinha + "\n" + 
+        return idLinha + "\n" + 
+                posicaoLinha + "\n" + 
                 autorLinha + "\n" + 
                 tituloLinha + "\n" + 
                 generoLinha + "\n" + 
                 numeroDeExemplaresLinha + "\n" + 
                 numeroDeExemplaresDisponiveisLinha + "\n";
+    }
+
+    public String idString(){
+        return this.id.toString();
     }
 
     public String toJSON(){
@@ -131,17 +150,15 @@ public class OpcaoDeLivro {
                 "}";
     }
 
-    public boolean alugarExemplar(){
-        System.out.println("Aqui!" + this.toString());
-
+    public String alugarExemplar(){
         if(this.numeroDeExemplaresDisponiveis > 0){
             this.numeroDeExemplaresDisponiveis -= 1;
             System.out.println("Aqui!" + this.toString());
 
-            return true;
+            return this.getId().toString();
         }
         else{
-            return false;
+            return "Não foi possível alugar o livro";
         }
 
     }  
@@ -154,4 +171,6 @@ public class OpcaoDeLivro {
             return false;
         }
     }
+
+    
 }

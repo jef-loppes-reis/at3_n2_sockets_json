@@ -16,14 +16,16 @@ public class Cliente {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         Scanner scanner = new Scanner(System.in);
         Socket socket = new Socket("localhost", 4000);
+        String mensagemAoCliente;
         Boolean continuar = true;
+        ObjectOutputStream objectOutputStream =
+         new ObjectOutputStream(socket.getOutputStream());
+           
+        ObjectInputStream objectInputStream =
+         new ObjectInputStream(socket.getInputStream());
 
         while(continuar){
-            ObjectOutputStream objectOutputStream =
-            new ObjectOutputStream(socket.getOutputStream());
            
-            ObjectInputStream objectInputStream =
-            new ObjectInputStream(socket.getInputStream());
             
             System.out.println("Digite o que deseja fazer: ");
             System.out.println("1 - Listar os livros");
@@ -35,24 +37,30 @@ public class Cliente {
             switch (opcao) {
                 case "1":
                     objectOutputStream.writeObject(opcao);
-                    String recebido = objectInputStream.readObject().toString();
-                    System.out.println(recebido);
+                    mensagemAoCliente = objectInputStream.readObject().toString();
                     break;
                 case "2":
                     System.out.println("Digite o livro que quer pegar emprestado: ");
                     String escolhaDeLivro = scanner.nextLine();
                     objectOutputStream.writeObject(opcao);
                     objectOutputStream.writeObject(escolhaDeLivro);
+                    mensagemAoCliente = objectInputStream.readObject().toString();
                 case "3":
                     System.out.println("Digite o livro que quer devolver: ");
                     String livroEscolhidoParaDevolver = scanner.nextLine();
                     objectOutputStream.writeObject(opcao);
                     objectOutputStream.writeObject(livroEscolhidoParaDevolver);
+                    mensagemAoCliente = objectInputStream.readObject().toString();
                 case "4":
+                    mensagemAoCliente= "Fim do programa";
                     continuar = false;
                 default:
+                    mensagemAoCliente= "Opcao invalida";
                     break;
+
             }
+            System.out.println(mensagemAoCliente);
+
             System.out.println("-----------------------");   
         }
         socket.close();     
